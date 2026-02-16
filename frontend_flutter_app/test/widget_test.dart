@@ -1,18 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:frontend_flutter_app/main.dart';
+import 'package:frontend_flutter_app/src/app/app.dart';
 
 void main() {
-  testWidgets('App generation message displayed', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('App boots and shows Home screen', (WidgetTester tester) async {
+    await tester.pumpWidget(const App());
 
-    expect(find.text('frontend_flutter_app App is being generated...'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    // App bar title from the first bottom tab.
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Welcome'), findsOneWidget);
   });
 
-  testWidgets('App bar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Bottom navigation has 3 destinations', (WidgetTester tester) async {
+    await tester.pumpWidget(const App());
 
-    expect(find.text('frontend_flutter_app'), findsOneWidget);
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Explore'), findsOneWidget);
+    expect(find.text('Settings'), findsOneWidget);
   });
 }
